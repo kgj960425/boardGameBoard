@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './Navbar.tsx'
+import firebase from 'firebase/compat/app';
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const db = firebase.firestore();
+  db.collection('product').get().then((result)=>{
+    console.log(result);
+  })
   return (
     <>
       <Navbar />
