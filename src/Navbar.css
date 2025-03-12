@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    margin-bottom: 20px;
+    background-color: #212529 !important;
+    padding: 10px 20px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white !important;
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin-right: 15px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: white !important;
+  }
+  
+  .search-container {
+    width: auto;
+  }
+  
+  .search-input {
+    width: 250px;  /* 기본 크기 */
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  /* 화면 크기에 따라 검색창 크기 조정 */
+  @media (max-width: 1200px) {
+    .search-input {
+      width: 200px;
+    }
+  }
+  
+  @media (max-width: 991px) { /* 모바일 화면 */
+    .navbar-collapse {
+      text-align: center;
+    }
+  
+    .navbar-nav {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    .search-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .search-input {
+      width: 90%;
+      max-width: 300px;
+    }
+  }
+  
