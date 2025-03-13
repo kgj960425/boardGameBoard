@@ -1,7 +1,56 @@
-# LGC PSM 모의 면담 과제
+# Firebase 연습 react 보드게임 [익스플로딩 키튼]
+
+## react 셋팅
+
+1) node.js 설치 
+2) terminal에서 npm create vite@lastest (프로젝트명) - vite의 마지막 버전으로 (프로젝트명) 폴더 안에 react 프로젝트 폴더 생성 ex) npm create vite@lastest beardgameboard
+
+(주의)   
+1) command not found의 경우 아직 node의 npm 명령어를 인식 못한 경우 - vscode 및 노트북 껏다 켜기
+2) 허가되지 않은 스크립트 입니다의 경우 - Powershell 검색 - 우클릭 - 관리자 권한으로 실행한 뒤 Set-ExecutionPolicy Unrestricted 입력해서 실행정책 변경
+
+## firebase 셋팅
+# 조코딩과 https://kmuhan-study.tistory.com/2 을 참고하였다
+
+1) npm install firebase
+2) npm install -g firebase-tools
+3) firebase login
+4) firebase init
+
+
+
+
+
+
+
+
+
+
+
+
+## 카드게임 기본 기능
+- 하스스톤, 덱 범위 내에서 마우스 올리면 확대 및 강조 애니메이션, 드래그 끌기 - 제출, [확인] 버튼은 없도록 하자
+- 고양이 사진. 많은 고양이 사진
+- 숙련자 룰 5자 모으면 다시 더미에서 카드 가져오기 룰
+- 확장팩으로 좀비 키튼이 있다.
+- 비슷한 게임으로 머핀 게임이 있다.세계 유랑 방방 곡곡, 타코 캣 고트 치즈 피자,순위는 실리카우!,듀오 미니, 카운트업, 라마,,꼼짝마,트러플 셔플,포토제닉,스컬킹,꼬치의 달인
+
+
+
+
+
+
+
+
+
+
+
+# PSM 모의 면담 과제
 
 ```text
-LG 화학 PSM 모의 면담 과제 Back End 프로젝트 입니다.
+모의 면담 과제 Back End 프로젝트 입니다.
+
+PSM(공정안전보고서)
 
 Spring Boot : 2.7.18
 ```
