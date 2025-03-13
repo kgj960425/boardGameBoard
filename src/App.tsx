@@ -1,67 +1,63 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './Navbar.tsx'
-// import firebase from 'firebase/compat/app';
-
-// firebase.js에서 db를 iWmport
-import { db } from './firebase.tsx';
-// firestore의 메서드 import
-import { doc, getDocs , getDoc , collection } from 'firebase/firestore';
+import { db } from './firebase.tsx'
+import { doc, getDocs, getDoc, collection } from 'firebase/firestore'
 
 function App() {
   const [count, setCount] = useState(0)
   const [test, setTest] = useState<any>()
 
-  // 최초 마운트 시에 getTest import
+  // 최초 마운트 시 데이터 가져오기
   useEffect(() => {
     setTest(null)
+
+    const fetchData = async () => {
+      await getTest() // Firestore 문서 가져오기
+      await fetchCollection() // 전체 컬렉션 가져오기
+    }
+
     fetchData()
   }, [])
-    
-    // document에 대한 참조 생성
-    const docRef = doc(db, "product", "product1");
-    // 참조에 대한 Snapshot 쿼리
-    const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      setTest(docSnap.data())
-    }
-  
-  // async - await로 데이터 fetch 대기
-  const fetchData = async () => {
+  // 단일 문서 가져오기 (비동기 함수)
+  const getTest = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, "product1"));
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, "=>", doc.data());
-      });
+      const docRef = doc(db, 'product', 'product1')
+      const docSnap = await getDoc(docRef)
+
+      if (docSnap.exists()) {
+        console.log('Document data:', docSnap.data())
+        setTest(docSnap.data())
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching document:', error)
     }
-  };
-  
+  }
+
+  // 컬렉션 가져오기 (비동기 함수)
+  const fetchCollection = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'product1'))
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data())
+      })
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
+
   return (
     <>
       <Navbar />
-      {/* <div>
-        {test !== undefined &&
-        <div>{test.name}</div>}
-      </div> */}
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        개에똥같은
-      </p>
       <div>
-        {test !== undefined &&
-        <div>{test.name}</div>}
+        {test !== undefined && <div>{test?.name}</div>}
       </div>
     </>
   )
