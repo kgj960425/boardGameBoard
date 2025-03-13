@@ -17,8 +17,66 @@
 3) firebase login
 4) firebase init
 
+##  build를 하면 자동으로 deploy 배포까지
 
+1) .github/workflows/firebase-deploy.yml 파일생성 
+2) 
+name: Deploy to Firebase Hosting
 
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 push하면 실행
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # 사용하는 Node.js 버전에 맞게 변경
+
+      - name: Install dependencies
+        run: npm install  # yarn 사용하면 `yarn install`
+
+      - name: Build project
+        run: npm run build  # Vite 사용하면 `npm run build`
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          channelId: live
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
+
+3) Firebase에서 서비스 계정 키 생성
+Firebase Console로 이동
+프로젝트 설정 → 서비스 계정 탭으로 이동
+Firebase Admin SDK → 새 비공개 키 생성 클릭
+다운로드된 JSON 파일을 열어서 내용을 복사
+
+4) GitHub Secrets에 등록
+GitHub Repository → Settings → Secrets and variables → Actions 이동
+New repository secret 클릭
+Name: FIREBASE_SERVICE_ACCOUNT
+Value: JSON 내용 전체 붙여넣기
+저장
+
+5) GitHub Actions 동작 확인
+main 브랜치에 push
+git add .
+git commit -m "자동 배포 테스트"
+git push origin main
+
+GitHub → Actions 탭에서 Deploy to Firebase Hosting 워크플로우 실행 확인
+성공하면 Firebase에서 배포된 상태 확인
 
 
 
