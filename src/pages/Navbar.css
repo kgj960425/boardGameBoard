@@ -4,9 +4,16 @@ body {
   }
   
   .navbar {
-    margin-bottom: 20px;
     background-color: #212529 !important;
-    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    padding: 20px 20px 10px;
+    padding-bottom: 10px;
+    color: var(--text-primary);
+    text-transform: capitalize;
   }
   
   .navbar-brand {
