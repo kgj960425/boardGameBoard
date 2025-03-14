@@ -3,7 +3,7 @@ import Navbar from './Navbar.tsx'
 import { db } from './firebase.tsx'
 import { doc, getDocs, getDoc, collection } from 'firebase/firestore'
 
-function TraninngPage() {
+function TraningPage() {
   const [count, setCount] = useState(0)
   const [nowTime, setNowTime] = useState("");
   const [test, setTest] = useState<any>()
@@ -58,7 +58,6 @@ function TraninngPage() {
 
   return (
     <>
-      <Navbar />
       <h1>Exploding Kittens</h1>
       <div className="card">
         <div>
@@ -79,4 +78,4 @@ function TraninngPage() {
   )
 }
 
-export default TraninngPage
+export default TraningPage
